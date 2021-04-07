@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+    <div class="container-fluid bg-danger text-light ">
+        <div class="row" style="padding-left: 2%;padding-top:1%;">
+            <div class="col-md-10">
+                <h2>GBA Hotels</h2>
+            </div>
+                <div class="col-md-2">
+                    <a href="{% url 'admin_login' %}" class="btn btn-primary" >Office Dashboard</a><br/><br/>
+                </div>
+        </div>
+    
+    </div>
+
+</br>
+<p><h5 style="margin-left: 3%; color:darkblue">Note that only employee whose Email is already in our database can sign up for an office account.</h5></p>
+
+    <div class="row" style="margin-left: 4%">
+        
+        <form  class="form-group" name="form1" id="form1" method="post" style="padding-top: 1%" action = "{% url 'admin_signup' %}">
+            {% csrf_token %}
+            <h3>Employee sign up</h3>
+        </br>
+            
+            {% if message %}
+                <b style="color: red">{{ message }}</b>
+            {% endif %}
+            <br/>
+            <div class="form-group row">
+                <label id="user" class="col-4 col-form-label">Username</label>
+                <div class="col-8">
+                    <input class="form-control" type="text" name = "user_name" placeholder = "Username" required="true" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label id="email" class="col-4 col-form-label">Email</label>
+                <div class="col-8">
+                    <input class="form-control" type="text" name = "email" placeholder = "Email" required="true" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label id="password" class="col-4 col-form-label">Password</label>
+                <div class="col-8">
+                    <input class="form-control" type="password" name = "password" placeholder = "Password" required="true" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label id="confirm_password" class="col-4 col-form-label">Re-enter Password</label>
+                <div class="col-8">
+                    <input class="form-control" type="password" name = "confirm_password" placeholder = "Password" required="true" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label id="address1" class="col-4 col-form-label">Street Address</label>
+                <div class="col-8">
+                    <input class="form-control" type="text" name = "address1" placeholder = "Street Address" required="true" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label id="city" class="col-4 col-form-label">City</label>
+                <div class="col-8">
+                    <input class="form-control" type="text" name = "city" placeholder = "City" required="true" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label id="state" class="col-4 col-form-label">State</label>
+                <div class="col-8">
+                    <input class="form-control" type="text" name = "state" placeholder = "State" required="true" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label id="country" class="col-4 col-form-label">Country</label>
+                <div class="col-8">
+                    <input class="form-control" type="text" name = "country" placeholder = "Country" required="true" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label id="contact_number" class="col-4 col-form-label">Contact number</label>
+                <div class="col-8">
+                    <input class="form-control" type="text" name = "phone_number" placeholder = "Contact number">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label id="passport_no" class="col-4 col-form-label">Passport No.</label>
+                <div class="col-8">
+                    <input class="form-control" type="text" name = "passport_no" placeholder = "Passport No." required="true" >
+                </div>
+            </div>
+
+        </br>
+            <input type = "submit" value = "Sign up" class="btn btn-primary">
+        </form>
+
+    </div>
+    <br>
+    {% endblock content %}

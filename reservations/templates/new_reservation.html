@@ -1,0 +1,267 @@
+{% extends 'base.html' %}
+
+
+
+{% block script %}
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+         <script type="text/javascript" >
+            function GetDays(){
+                    var dropdt = new Date(document.getElementById("cod").value);
+                    var pickdt = new Date(document.getElementById("cid").value);
+                    return parseInt((dropdt - pickdt) / (24 * 3600 * 1000));
+            }
+
+            function cal(){
+                if(document.getElementById("cod")){
+                    document.getElementById("total_days").value=GetDays();
+                }
+            }
+
+         </script>
+{% endblock script %}
+
+{% block content %}
+<div class="container-fluid bg-danger text-light ">
+    <div class="row" style="padding-left: 2%;padding-top:1%;">
+        <div class="col-md-10">
+            <h2>Reservation Details</h2>
+        </div>
+        {% if name %}
+            <div class="col-md-2">
+                <a href="{% url 'dashboard' %}" style="color:aliceblue"> {{ name }}</a> |
+                <a href="{% url 'logout' %}" class="btn btn-primary" >Log out</a><br/><br/>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+        <div class="container">
+            <form class="form-horizontal" action="{% url 'reservation' %}"  method="post">
+                {% csrf_token %}
+            </br>
+                <div class="form-group row">
+                    <label id = "username_label" class="control-label col-sm-2">Username:</label>
+                    <label id="user_name" class="control-label">{{ name }}</label>
+                </div>
+
+                <div class="form-group row">
+                    <label id = "Gid_label" class="control-label col-sm-2" for="hotel_id">Hotel id:</label>
+                    <input type="text" class="form-control col-sm-2" name="hotel_id" id="hotel_id" value="{{ hotel_id }}" readonly>
+
+                </div>
+                <div class="form-group row">
+                    <label id = "Gid_label" class="control-label col-sm-2">Hotel Full Name:</label>
+                    <label id="G_id" class="control-label">{{ hotel_name }}</label>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-2">Check in date:</label>
+                    <input type="date" class="form-control col-sm-2" id="cid" name="check_in_date" size="10"/>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-2">Check in time:</label>
+                    <input type="time" id="cit" class="form-control col-sm-2" name="check_in_time" placeholder="HH:MM" size="5">
+                    <div class="col-xs-2">
+                        <select name="session1" style="width:auto;" class="form-control">
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-2">Check out date:</label>
+                    <input type="date" class="form-control col-sm-2" id="cod" name="check_out_date" onchange="cal()" size="10"/>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-2">Check out time:</label>
+                    <input type="time" id="cot" class="form-control col-sm-2" name="check_out_time" placeholder="HH:MM" size="5">
+                    <div class="col-xs-2">
+                        <select name="session2" class="form-control" style="width:auto;">
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select>
+                    </div>
+                </div>
+            <div class="form-group row">
+                <label class="control-label col-sm-2">Number of days:</label>
+                <input type="text" class="form-control col-sm-2" id="total_days" name="total_days" readonly size="5">
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-sm-2" id = "total_guests">Number of Guests:</label>
+
+                <select name="total_guests"  class="form-control" style="width:auto;">
+                    <option value="1"> 1 </option>
+                    <option value="2"> 2</option>
+                    <option value="3"> 3</option>
+                    <option value="4"> 4</option>
+                    <option value="5"> 5</option>
+                    <option value="6"> 6</option>
+                    <option value="7"> 7</option>
+                    <option value="8"> 8</option>
+                    <option value="9"> 9</option>
+                    <option value="10"> 10</option>
+                </select>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-sm-2" id = "rooms">Room Type:</label>
+                <select id="room_type" class="form-control" style="width:auto;" name="room_type" onchange="get()">
+                    <option value="none">Select Room Type</option>
+                        {% for item in room_types %}
+                            <option  value="{{ item }}">{{ item }}</option>
+                         {% endfor %}
+                </select>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-sm-2">Price per day:</label>
+                <label class="control-label col-sm-2" id="price_per_day"></label>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-sm-2" id = "status_label">Room Status:</label>
+                <label class="control-label col-sm-6" id="status" ></label><br/>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-sm-2">Rooms needed:</label>
+                <input type="text" id="total_rooms" class="form-control col-sm-2" name="total_rooms">
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-sm-2">Check for discount</label>
+                <input type="hidden" class="form-control" name="discount_id" id="discount_id" value="N/A" />
+                <b><label id = "discount" class="control-label"></label></b>
+                <button type="button" id="dis_btn" class="btn btn-primary">Check</button>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-sm-2">Total price:</label>
+                <label class="control-label" style="float: left">HKD </label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="total_cost" size="10" name="total_cost" value="0" readonly="true">
+                </div>
+                <button type="button" id="apply" disabled="true" class="btn btn-primary">Apply</button>
+            </div>
+            <div class="form-group row">
+                <label id = "discount_label" class="control-label col-sm-2">Discounted price:</label>
+                <label class="control-label" style="float: left">HKD </label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="discounted_price" size="10" name="discounted_price" value="0" readonly="true">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 col-sm-offset-2">
+                    <input type="submit"  value="Book now" class="btn btn-primary" id="submit"><br><br>
+                </div>
+            </div>
+            </form>
+        </div>
+
+        <script>
+            var available;
+            var price;
+            var discount_status = null;
+            $(document).ready(function() {
+                if(!!window.performance && window.performance.navigation.type == 2)
+                {
+                    window.location.reload();
+                }
+                $('#dis_btn').prop('disabled', false);
+                $('#room_type').on('change', function () {
+                    var total_rooms = $('#total_rooms').val();
+                    var total_days = $('#total_days').val();
+                    var data = {"room_type": $(this).val(), "request_no": 1};
+                    $.ajax({
+                        url: {% url 'reservation' %},
+                        contentType:"application/json",
+                        dataType:"json",
+                        data: data,
+                        success: function (data) {
+                            price = parseInt(data.room_price)
+                            $('#price_per_day').text("HKD  "+data.room_price);
+                            available = parseInt(data.rooms_available);
+                            $('#status').text(data.rooms_available + " Room(s) available on selected category");
+                            if(total_rooms!=null && price !=null && total_days!=null){
+                                if(parseInt(total_rooms) == available){
+                                    $('#total_cost').val(parseInt(total_rooms)*price*parseInt(total_days)+".00");
+                                }
+                                else if(parseInt(total_rooms)>available){
+                                    $('#total_rooms').val('');
+                                    alert('More than available entered')
+                                    $('#total_cost').val("HKD  ");
+                                }
+
+                            }
+                        },
+                        error: function (msg) {
+                            alert(msg);
+                            $('#price_per_day').text('');
+                            $('#status').text('');
+                        }
+                    });
+
+
+                });
+                $('#apply').on('click', function () {
+                    if (discount_status != null) {
+                        $('#discount_id').val(discount_status);
+                    }
+                });
+
+               $('#dis_btn').on('click',function () {
+                     var total_days = $('#total_days').val();
+                     var total_rooms = $('#total_rooms').val();
+                     var room = $('#room_type').val();
+                     if(total_days!=null && room!='Select Room Type' && total_rooms!=null ){
+                         var data = {"request_no": 2, "no_of_days": total_days, 'room_type': room};
+                          $.ajax({
+                            url: {% url 'reservation' %},
+                            contentType:"application/json",
+                            dataType:"json",
+                            data: data,
+                            success: function (data) {
+                                var message = data.message;
+
+                                if(message=="success"){
+
+                                    var total = parseInt($('#total_rooms').val())*price*parseInt(total_days);
+                                    $('#dis_btn').prop('disabled', true);
+                                    var discount_id = data.discount_id;
+                                    var offer = data.offer_percent;
+                                    $('#discount').text(discount_id+" available.  ");
+
+                                    $('#apply').prop('disabled', false);
+                                    $('#apply').on('click', function () {
+                                        discount_status = discount_id
+                                        $('#discount_id').val(discount_id);
+                                        $('#discounted_price').val(parseFloat(total-(total*(parseInt(offer)/100))).toFixed(2))
+                                        $('#apply').prop('disabled', true);
+                                    });
+                                }
+                                else{
+                                    $('#discount').text('No discount available for this reservation.  ');
+                                }
+
+
+                            },
+                            error: function (msg) {
+                                alert(msg);
+
+                            }
+                          });
+                     }
+               });
+
+                $('#total_rooms').on('change',function () {
+                    var total_rooms = parseInt($('#total_rooms').val());
+                    var total_days = parseInt($('#total_days').val());
+                    if(total_rooms == available){
+                        if(total_rooms != null && price !=  null&& total_days != null) {
+                            $('#total_cost').val(parseFloat(total_rooms * price * total_days).toFixed(2));
+                        }
+                    }
+                    else if(total_rooms>available){
+                                $('#total_rooms').val('');
+                                alert('More than available entered')
+                                $('#total_cost').val("HKD  ");
+                    }
+                });
+            });
+        </script>
+ {% endblock content %}

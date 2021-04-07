@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+    <div class="container-fluid bg-danger text-light ">
+        <div class="row" style="padding-left: 2%;padding-top:1%;">
+            <div class="col-md-10">
+                <h2>GBA Hotels</h2>
+            </div>
+                <div class="col-md-2">
+                    <a href="{% url 'admin_signup' %}" class="btn btn-primary" >New? Sign up here</a><br/>
+                    <a href="{% url 'home' %}">Back to Home</a>
+                </div>
+        </div>
+    
+    </div>
+
+</br>
+</br>
+    <div class="row" style="margin-left: 4%">
+    <form  name="form1" id="form1" method="post" action = "{% url 'admin_login' %}">
+        {% csrf_token %}
+        <h3>Sign in as an Employee</h3><br>
+        <div class="form-group row">
+            <label id="user" class="col-3 col-form-label">Username</label>
+            <div class="col-9">
+                <input class="form-control" type="text" name = "user_name" placeholder = "Username" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-3 col-form-label">Password</label>
+            <div class="col-9">
+                <input  class="form-control" type = "password" name = "password" placeholder = "Password" ><br/>
+            </div>
+        </div>
+        <input type = "submit" value = "Login" class="btn btn-primary">
+    </form>
+
+        {% if message %}
+            {{ message }}
+        {% endif %}
+    </div>
+    <br>
+{% endblock %}

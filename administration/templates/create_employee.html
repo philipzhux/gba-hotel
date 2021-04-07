@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="row" style="padding-left: 2%;padding-top:1%;">
+        <div class="col-md-9">
+            <h2>GBAHotel</h2>
+        </div>
+
+        {% if name %}
+            <div class="col-md-3">
+                <a href="{% url 'admin' %}" > {{ name }}</a> |
+                <a href="{% url 'office_logout' %}" class="btn btn-primary" >Log out</a><br/><br/>
+            </div>
+        {% endif %}
+
+    </div>
+
+
+    <div class="container" style="margin-left: 4%">
+        <form  class="form-group" name="form1" id="form1" method="post" style="padding-top: 1%" action = "{% url 'create_employee' %}">
+            {% csrf_token %}
+            <h3>Create employee</h3>
+            {% if message %}
+                <b style="color: red">{{ message }}</b>
+            {% endif %}
+            <br/>
+            <div class="form-group row">
+                <label class="control-label col-sm-2">Hotel id</label>
+                <label id="hotel_id" class="control-label">hidn-{{ hotel_id }}</label>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-sm-2">Hotel Full Name</label>
+                <label id="hotel_name" class="control-label">{{ hotel_name }}</label>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-sm-2">Designation</label>
+                <input class="form-control col-sm-2" type="text" name = "designation" placeholder = "Designation" required="true" >
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-sm-2">Experience</label>
+                <input class="form-control col-sm-2" type="text" name = "experience" placeholder = "Experience" required="true" >
+            </div>
+            <input type = "submit" value = "Create" class="btn btn-primary">
+        </form>
+
+    </div>
+    <br>
+{% endblock content %}

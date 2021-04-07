@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid bg-dark text-light ">
+
+  <div class="row" style="padding-left: 2%;padding-top:1%;">
+    <div class="col-md-9 row">
+        <h2 style="padding-left: 2%; padding-bottom: 1%">GBA Hotel Reservation</h2>
+    </div>
+    {% if name %}
+        <div class="col-md-3 float-right" >
+          <text>Hello, </text>
+              <a href="{% url 'dashboard' %}" >{{name}}</a>
+            <a href="{% url 'logout' %}" class="btn btn-warning" >Log out</a>           
+        </div>
+    {% else %}
+        <div class="col-md-3 float-right">
+            <a href="{% url 'login' %}" class="btn btn-primary" >Login</a>
+            <a href="{% url 'signup' %}" class="btn btn-primary" >Sign up</a>
+            <a href="{% url 'admin_login' %}" >
+                <img class="icon icons8-Admin-Settings-Male-Filled" width="30" height="30" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAC+klEQVRIS91WTVIaURD+ehhKd5oTCFUZtoHAPnACyQmCGx1W6gkkJ5CshmQDniDkBOI6YGYNVkFOELPT8JhO9cBLwXNkBssqqzIrqujXX/98/XUTXuijp+LmvwzzadDO90Pn6ik+NgIufr6pEgdnAOUNsGbfdU43CSAxcLF10wS4RoymSnHXP8z5AiTBgLkD8C+QdTo4et1NEkAi4Lw3ztikxsriggZcdp5vj3etP6pmMc4fszGDSQRc9IYdeTio52rrsklqJz4SAZe8US+w0L0+cpprgedlbw9c51VcuRMBF1ujW2JU+3Wnt85hyRuVQbjsu06s31iDkEAvBZy01M+fcUJylbxRA0C5X3fKz9TjoQ9YvYH7+iSmxw0mHP8H5PKGHSLaU2wf+PXsJCprEZHUvWoDnB24OVNSHzxJxOrQ6Z3yGdy4rudCMTE/LZ0zi8tR6vYk5QpHapF133UqkcAJCajfJspYjEWvU6R8Zj4xs55vLf6q2M7qVui1OQX/jqpAYuC5kNw0iTlvjouMUQCeBNvprn+QvRXbUmvEYXaMK20vLdP/bwQczinxft/NFczthOk0kwrokoCOsvjCDuiHtpGNlQrojMAZtZWuCPhGwMXWqEvAPoMnxHSgtXvB6AkBO3HCwcC3getUEwGLY3EozCbCnvw2927YBvBxHDAYFQl4LfBbb1iziD6IDDLR+xkFk1RAvSiCLWzbGpgZP0GQK6WsK8HA7cziipAtEng+k8E5gTL/HC0e2TPaVdu2b91Nq8JuvRiWMxXQQd0J3+rrJXaOzchXHIIns610IXWvOszcfRR40Uf9ttga+gR6s+xrJeOo6KN69iAjqA4DGd3/sKRsF2SmZZ6XGa5bsAKsWRtHEAZ9MjdVdNDsm6ewvk5Wgb3RREe9DjwgnJr3lxwLILyLCxqMj/260zBLLYs89lOwO8tbaj7H057Zx+g28YVcq4nmODYSYW97vGvfqS5b1JSjXkum5oOoHoMz+kR+NmAzuCitXrb5CxjbutBsIX74AAAAAElFTkSuQmCC">
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+
+
+ 
+
+    
+     
+    <div id="ImageShowCase" class="carousel slide col-sm-12" data-ride="carousel" style="height:100%">
+        <ol class="carousel-indicators">
+            <li data-target="#ImageShowCase" data-slide-to="0" class="active"></li>
+            <li data-target="#ImageShowCase" data-slide-to="1"></li>
+            <li data-target="#ImageShowCase" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <img style="width: 100%; height: 550px" class="d-block img-fluid" src="/static/rhwht.jpeg" alt="First slide">
+              <div class="carousel-caption d-none d-md-block">
+              <h3 style="text-shadow: 2px 2px 4px #000000;"> Renaissance Harbour View Hotel</h3>
+                <p style="text-shadow: 2px 2px 4px #000000;"> Wan Chai, Hong Kong, Hong Kong</p>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <div class="center">
+                <h3><a href="{% url 'search' %}" class="btn btn-primary">Go and Book Right Now</a></h3>
+              </div>
+
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img style="width: 100%; height: 550px" class="d-block img-fluid" src="/static/rhwht.jpeg" alt="First slide">
+              <div class="carousel-caption d-none d-md-block">
+              <h3 style="text-shadow: 2px 2px 4px #000000;"> Renaissance Harbour View Hotel</h3>
+                <p style="text-shadow: 2px 2px 4px #000000;"> Wan Chai, Hong Kong, Hong Kong</p>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <div class="center">
+                <h3><a href="{% url 'search' %}" class="btn btn-primary">Go and Book Right Now</a></h3>
+              </div>
+
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img style="width: 100%; height: 550px" class="d-block img-fluid" src="/static/rhwht.jpeg" alt="First slide">
+              <div class="carousel-caption d-none d-md-block">
+              <h3 style="text-shadow: 2px 2px 4px #000000;"> Renaissance Harbour View Hotel</h3>
+                <p style="text-shadow: 2px 2px 4px #000000;"> Wan Chai, Hong Kong, Hong Kong</p>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <div class="center">
+                <h3><a href="{% url 'search' %}" class="btn btn-primary">Go and Book Right Now</a></h3>
+              </div>
+
+              </div>
+            </div>
+        </div>
+
+    </div>
+    
+  </div>
+    <script>
+        $('.carousel').carousel({
+          interval: 3000
+        })
+
+    </script>
+{% endblock content %}

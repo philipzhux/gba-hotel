@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+        <div class="row" style="padding-left: 2%;padding-top:1%;">
+            <div class="col-md-9">
+                <h2>GBAHotel</h2>
+            </div>
+            {% if name %}
+                <div class="col-md-3">
+                    <a href="{% url 'employee_profile' %}" > {{ name }}</a> |
+                    <a href="{% url 'office_logout' %}" class="btn btn-primary" >Log out</a><br/><br/>
+                </div>
+            {% endif %}
+        </div>
+        <nav class="nav justify-content-center">
+
+            <a class="nav-link" href="{% url 'reservation_records' %}" >Order History</a> <br/><br/>
+        </nav><br/><br/>
+        <div class="container" style="overflow-y: scroll">
+        {% if details %}
+            {% for detail in details %}
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="card">
+                            <div class="card-block">
+                                <b class="card-title" style="font-size: x-large">Reservation id:</b> <b>hid-{{ detail.0.reservation_id }}</b><br/><br/>
+                                <h6 class="card-subtitle mb-2 text-muted">Hotel: {{ detail.1 }}</h6>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                    <b><p class="card-text">Room type: {{ detail.0.room_id }}</p></b>
+                                    </div>
+                                    <div class="col-sm-2">
+                                    <b><p class="card-text">Rooms: {{ detail.0.total_rooms }}</p></b>
+                                    </div>
+                                    <div class="col-sm-3">
+                                    <b><p class="card-text">Total price: HKD {{ detail.0.total_cost }}</p></b>
+                                    </div>
+                                    {% if detail.0.discounted_price > 0 %}
+                                        <div class="col-sm-3">
+                                        <b><p class="card-text">Final price: HKD {{ detail.0.discounted_price}}</p></b>
+                                        </div>
+                                    {% else %}
+                                        <div class="col-sm-3">
+                                        <b><p class="card-text">Final price: HKD {{ detail.0.total_cost}}</p></b>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <a href="{% url 'cancel_records' %}?reservation_id={{ detail.0.reservation_id }}" class="card-link">Cancel reservation</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+{% endblock content %}

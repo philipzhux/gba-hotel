@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    dl {
+    width: 100%;
+    overflow: hidden;
+    }
+    dt {
+    float: left;
+    width: 40%;
+    padding-left:16%;
+
+    }
+    dd {
+    float: left;
+    width: 60%;
+
+    }
+{% endblock style %}
+
+{% block content %}
+
+<div class="container-fluid bg-danger text-light ">
+    <div class="row" style="padding-left: 2%;padding-top:1%;">
+        <div class="col-md-10">
+            <h2>GBA Hotels</h2>
+        </div>
+        {% if name %}
+            <div class="col-md-2">
+                <a href="{% url 'dashboard' %}" style="color:aliceblue"> {{ name }}</a> |
+                <a href="{% url 'logout' %}" class="btn btn-primary" >Log out</a><br/><br/>
+            </div>
+        {% endif %}
+    </div>
+</div>
+    <br/>
+    <div class="container-fluid bg-light text-dark" > 
+        <div class="container text-right">
+            <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+        </div> 
+        <dl >
+            <h3 style="padding-left: 5%">Reservation Summary</h3><br/>
+            <dt>Hotel ID : </dt> <dd>{{hotel.hotel_id}}</dd>
+            <dt>Hotel Full Name : </dt>  <dd>{{hotel.name}}</dd>
+            <dt>Reservation date : </dt>  <dd>{{new_reservation.reservation_date}}</dd>
+            <dt>Reservation ID : </dt>  <dd>{{new_reservation.reservation_id}}</dd>
+            <dt>Check in date : </dt>   <dd>{{new_reservation.check_in_date}}</dd>
+            <dt>Check in time : </dt>  <dd>{{new_reservation.check_in_time}}</dd>
+            <dt>Check out date : </dt>  <dd>{{new_reservation.check_out_date}}</dd>
+            <dt>Check out time : </dt>  <dd>{{new_reservation.check_out_time}}</dd>
+            <dt>Total no of guests : </dt> <dd>{{new_reservation.total_guests}}</dd>
+            <dt>Total no of days : </dt> <dd>{{new_reservation.total_days}}</dd>
+            <dt>Room type : </dt> <dd>{{new_reservation.room_id}}</dd>
+            <dt>Total no of rooms : </dt> <dd>{{new_reservation.total_rooms}}</dd>
+            <dt>Total cost : </dt> <dd>{{new_reservation.total_cost}}</dd>
+            {% if new_reservation.discounted_price != '0' %}
+                <dt>Final amount : </dt> <dd>{{new_reservation.discounted_price}}</dd>
+            {% else %}
+                <dt>Final amount : </dt><dd>{{new_reservation.total_cost}}</dd>
+            {% endif %}
+        </dl>
+
+    </div>
+    
+{% endblock content %}

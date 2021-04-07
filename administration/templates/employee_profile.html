@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="row" style="padding-left: 2%;padding-top:1%;">
+            <div class="col-md-10">
+                <h2>GBAHotel</h2>
+            </div>
+            {% if name %}
+                <div class="col-md-2">
+
+                    <a href="{% url 'logout' %}" class="btn btn-primary" >Log out</a><br/><br/><br/>
+                </div>
+            {% endif %}
+    </div>
+    <div class="form-group" style="padding-top: 1%; height: 200px">
+            <div class="row col-xs-1" align="center" style=" background-color:#fff;
+                border:5px solid gray;
+                margin-left: 46%;
+                height:110px;
+                border-radius:50%;
+                -moz-border-radius:50%;
+                -webkit-border-radius:50%;
+                width:110px;">
+                <img class="icon icons8-User" width="96" height="96" src="data:image/png;base64,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">
+            </div>
+
+            <div class="row col-xs-1" align="center" >
+            <label id="user" class="col-12 col-form-label" style="color: dodgerblue"><h3>{{name}}</h3></label>
+            </div><br/>
+
+    </div>
+    <div class="col-md-12" style="margin-left: 35%;overflow-y: scroll">
+        <!--div class="row">
+            <label id="user" class="col-12 col-form-label"><h3>{{name}}</h3></label>
+        </div--><br/>
+         <div class="form-group row">
+            <label id="user" class="col-2 col-form-label">Hotel Name</label>
+            <label id="user" class="col-10 col-form-label">{{hotel_name}}</label>
+        </div>
+        <div class="form-group row">
+            <label class="control-label col-sm-2">Employee id</label>
+            <label id="hotel_id" class="col-10 control-label"><b>hotel-id-emp-{{ employee.employee_id }}</b></label>
+        </div>
+        <div class="form-group row">
+            <label id="user" class="col-2 col-form-label">Designation</label>
+            <label id="user" class="col-10 col-form-label">{{employee.designation_id}}</label>
+        </div>
+        <div class="form-group row">
+            <label id="user" class="col-2 col-form-label">Experience</label>
+            <label id="user" class="col-10 col-form-label">{{employee.experience}}</label>
+        </div>
+        <div class="form-group row">
+            <label id="user" class="col-2 col-form-label">Email</label>
+            <label id="user" class="col-10 col-form-label">{{employee.email}}</label>
+        </div>
+        <div class="form-group row">
+            <label id="user" class="col-2 col-form-label">Address</label>
+            <label id="user" class="col-10 col-form-label">{{employee.address}}</label>
+        </div>
+         <div class="form-group row">
+            <label id="user" class="col-2 col-form-label">City</label>
+            <label id="user" class="col-10 col-form-label">{{employee.city}}</label>
+        </div>
+         <div class="form-group row">
+            <label id="user" class="col-2 col-form-label">State</label>
+            <label id="user" class="col-10 col-form-label">{{employee.state}}</label>
+        </div>
+        <div class="form-group row">
+            <label id="user" class="col-2 col-form-label">Contact Number</label>
+            <label id="user" class="col-10 col-form-label">{{employee.contact_no}}</label>
+        </div>
+         <div class="form-group row">
+            <label id="user" class="col-2 col-form-label">Country</label>
+            <label id="user" class="col-10 col-form-label">{{employee.country}}</label>
+        </div>
+        <div class="form-group row">
+            <label id="user" class="col-2 col-form-label">Passport Number</label>
+            <label id="user" class="col-10 col-form-label">{{employee.passport_no}}</label>
+        </div>
+
+
+    </div>
+    <script type="text/javascript">
+
+        window.onload = function() {
+            var colours = ["#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#34495e", "#16a085", "#27ae60", "#2980b9", "#8e44ad", "#2c3e50", "#f1c40f", "#e67e22", "#e74c3c", "#95a5a6", "#f39c12", "#d35400", "#c0392b", "#bdc3c7", "#7f8c8d"];
+
+            var name = document.getElementById("name").value,
+                nameSplit = name.split(" "),
+                initials = nameSplit[0].charAt(0).toUpperCase() + nameSplit[1].charAt(0).toUpperCase();
+
+            var charIndex = initials.charCodeAt(0) - 65,
+                colourIndex = charIndex % 19;
+
+            var canvas = document.getElementById("user-icon");
+            var context = canvas.getContext("2d");
+
+            var canvasWidth = $(canvas).attr("width"),
+                canvasHeight = $(canvas).attr("height"),
+                canvasCssWidth = canvasWidth,
+                canvasCssHeight = canvasHeight;
+
+            if (window.devicePixelRatio) {
+                $(canvas).attr("width", canvasWidth * window.devicePixelRatio);
+                $(canvas).attr("height", canvasHeight * window.devicePixelRatio);
+                $(canvas).css("width", canvasCssWidth);
+                $(canvas).css("height", canvasCssHeight);
+                context.scale(window.devicePixelRatio, window.devicePixelRatio);
+            }
+
+            context.fillStyle = colours[colourIndex];
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            context.font = "128px Arial";
+            context.textAlign = "center";
+            context.fillStyle = "#FFF";
+            context.fillText(initials, canvasCssWidth / 2, canvasCssHeight / 1.5);
+        }
+
+    </script>
+{% endblock content %}

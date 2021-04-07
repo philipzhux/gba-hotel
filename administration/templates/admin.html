@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="row" style="padding-left: 2%;padding-top:1%;">
+        <div class="col-md-10">
+            <h2>GBAHotel</h2>
+        </div>
+
+        {% if name %}
+            <div class="col-md-2">
+                <a href="{% url 'office_logout' %}" class="btn btn-primary" >Log out</a><br/><br/>
+            </div>
+        {% endif %}
+
+    </div><br/><br/>
+
+
+    <div class="row" style="margin-left: 4%">
+        <div class="form-group row">
+            <h2><a href="{% url 'create_employee' %}">Create employee</a></h2>
+        </div>
+    </div>
+    <div class="row" style="margin-left: 4%">
+        <div class="form-group row">
+            <h2><a href="{% url 'update_employee' %}">Update employee</a></h2>
+        </div>
+    </div>
+    <br>
+{% endblock content %}

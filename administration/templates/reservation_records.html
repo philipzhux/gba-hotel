@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{%  block content %}
+    <div class="row" style="padding-left: 2%;padding-top:1%;">
+        <div class="col-md-9">
+            <h2>GBAHotel</h2>
+        </div>
+        {% if name %}
+            <div class="col-md-3">
+                <a href="{% url 'employee' %}" > {{ name }}</a> |
+                <a href="{% url 'office_logout' %}" class="btn btn-primary" >Log out</a><br/><br/><br/>
+            </div>
+        {% endif %}
+    </div>
+    <ul class="nav nav-tabs nav-fill">
+        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#confirmed">Confirmed reservations</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cancelled1">Cancelled by user</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cancelled2">Cancelled by hotel</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="confirmed" class="tab-pane active" role="tabpanel"><br/>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Reservation id</th>
+                        <th>Guest id</th>
+                        <th>Hotel Full Name</th>
+                        <th>Check in</th>
+                        <th>Check out</th>
+                        <th>Booked date</th>
+                        <th>Room type</th>
+                        <th>Rooms</th>
+                        <th>Guests</th>
+                        <th>Total price</th>
+                        <th>Final price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% if confirmed_details %}
+                    {% for confirmed_detail in confirmed_details %}
+                        <tr>
+                            <th scope="row">{{ confirmed_detail.reservation_id }}</th>
+                            <td>{{ confirmed_detail.guest_id }}</td>
+                            <td>{{ hotel_name }}</td>
+                            <td>{{ confirmed_detail.check_in_date }}&nbsp;{{ confirmed_detail.check_in_time}}</td>
+                            <td>{{ confirmed_detail.check_out_date }}&nbsp;{{ confirmed_detail.check_out_time}}</td>
+                            <td>{{ confirmed_detail.reservation_date }}</td>
+                            <td>{{ confirmed_detail.room_id }}</td>
+                            <td>{{ confirmed_detail.total_rooms }}</td>
+                            <td>{{ confirmed_detail.total_guests }}</td>
+                            <td>{{ confirmed_detail.total_cost}}</td>
+                            {% if confirmed_detail.discounted_price > 0 %}
+                                <td>{{ confirmed_detail.discounted_price}}</td>
+                            {% else %}
+                                <td>{{ confirmed_detail.total_cost}}</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <div id="cancelled1" class="tab-pane fade" role="tabpanel"><br/>
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Reservation id</th>
+                        <th>Guest id</th>
+                        <th>Hotel Full Name</th>
+                        <th>Check in</th>
+                        <th>Check out</th>
+                        <th>Booked date</th>
+                        <th>Room type</th>
+                        <th>Rooms</th>
+                        <th>Guests</th>
+                        <th>Total price</th>
+                        <th>Final price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% if cancelled_details1 %}
+                    {% for cancelled_detail in cancelled_details1 %}
+                        <tr>
+                            <th scope="row">{{ cancelled_detail.reservation_id }}</th>
+                            <td>{{ cancelled_detail.guest_id }}</td>
+                            <td>{{ hotel_name }}</td>
+                            <td>{{ cancelled_detail.check_in_date }}&nbsp;{{ cancelled_detail.check_in_time}}</td>
+                            <td>{{ cancelled_detail.check_out_date }}&nbsp;{{ cancelled_detail.check_out_time}}</td>
+                            <td>{{ cancelled_detail.reservation_date }}</td>
+                            <td>{{ cancelled_detail.room_id }}</td>
+                            <td>{{ cancelled_detail.total_rooms }}</td>
+                            <td>{{ cancelled_detail.total_guests }}</td>
+                            <td>{{ cancelled_detail.total_cost}}</td>
+                            {% if cancelled_detail.discounted_price > 0 %}
+                                <td>{{ cancelled_detail.discounted_price}}
+                            {% else %}
+                                <td>{{ cancelled_detail.total_cost}}</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <div id="cancelled2" class="tab-pane fade" role="tabpanel"><br/>
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Reservation id</th>
+                        <th>Guest id</th>
+                        <th>Hotel Full Name</th>
+                        <th>Check in</th>
+                        <th>Check out</th>
+                        <th>Booked date</th>
+                        <th>Room type</th>
+                        <th>Rooms</th>
+                        <th>Guests</th>
+                        <th>Total price</th>
+                        <th>Final price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% if cancelled_details2 %}
+                    {% for cancelled_detail in cancelled_details2 %}
+                        <tr>
+                            <th scope="row">{{ cancelled_detail.reservation_id }}</th>
+                            <td>{{ cancelled_detail.guest_id }}</td>
+                            <td>{{ hotel_name }}</td>
+                            <td>{{ cancelled_detail.check_in_date }}&nbsp;{{ cancelled_detail.check_in_time}}</td>
+                            <td>{{ cancelled_detail.check_out_date }}&nbsp;{{ cancelled_detail.check_out_time}}</td>
+                            <td>{{ cancelled_detail.reservation_date }}</td>
+                            <td>{{ cancelled_detail.room_id }}</td>
+                            <td>{{ cancelled_detail.total_rooms }}</td>
+                            <td>{{ cancelled_detail.total_guests }}</td>
+                            <td>{{ cancelled_detail.total_cost}}</td>
+                            {% if cancelled_detail.discounted_price > 0 %}
+                                <td>{{ cancelled_detail.discounted_price}}
+                            {% else %}
+                                <td>{{ cancelled_detail.total_cost}}</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
