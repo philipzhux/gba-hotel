@@ -8,7 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 def admin_login(request):
     if 'employee_id' in request.session:
-        if request.session['designation'] == 'admin':
+        if request.session['position'] == 'admin':
             return redirect('admin')
         else:
             return redirect('employee')
@@ -25,10 +25,10 @@ def admin_login(request):
         if password == record.password:
             request.session['employee_name'] = record.user_name
             request.session['employee_id'] = record.employee_id
-            designation = EmplyeeProfile.objects.get(pk=record.employee_id).designation_id
-            request.session['designation'] = designation
+            position = EmplyeeProfile.objects.get(pk=record.employee_id).position_id
+            request.session['position'] = position
             request.session['hotel_id'] = record.hotel_id
-            if designation == 'admin':
+            if position == 'admin':
                 return redirect('admin')
             else:
                 return redirect('employee')
@@ -39,9 +39,9 @@ def admin_login(request):
 
 def admin_signup(request):
     if 'employee_name' in request.session:
-        if request.session['designation'] == 'admin':
+        if request.session['position'] == 'admin':
             return redirect('admin')
-        elif request.session['designation'] == 'employee':
+        elif request.session['position'] == 'employee':
             return redirect('employee')
     if request.method == 'POST':
         user_name = request.POST.get('user_name')
@@ -84,11 +84,11 @@ def create_employee(request):
     if 'employee_name' not in request.session:
         return redirect('admin_login')
     if request.method == 'POST':
-        designation = request.POST.get('designation')
+        position = request.POST.get('position')
         experience = request.POST.get('experience')
         hotel_id = EmplyeeProfile.objects.get(employee_id=request.session['employee_id']).hotel_id
         hotel_name = HotelProfile.objects.get(pk=hotel_id).name
-        new_employee = EmplyeeProfile(designation_id=designation, experience=experience, hotel_id=hotel_id)
+        new_employee = EmplyeeProfile(position_id=position, experience=experience, hotel_id=hotel_id)
         new_employee.save()
         return render(request, 'create_employee.html', {'message': 'Employee created successfully.',
                                                         'hotel_id': hotel_id, 'hotel_name': hotel_name,
@@ -106,14 +106,14 @@ def update_employee(request):
         employee_id = request.GET.get('employee_id')
         try:
             record = EmplyeeProfile.objects.get(pk=employee_id)
-            return JsonResponse({'message': 'success', 'designation': record.designation_id, 'experience': record.experience})
+            return JsonResponse({'message': 'success', 'position': record.position_id, 'experience': record.experience})
         except ObjectDoesNotExist:
             return JsonResponse({'message': 'failure'})
     if request.method == 'POST':
         employee_id = request.POST.get('employee_id')
         employee = EmplyeeProfile.objects.get(pk=employee_id)
         employee.experience = request.POST.get('experience')
-        employee.designation_id = request.POST.get('designation')
+        employee.position_id = request.POST.get('position')
         employee.save()
         hotel_id = EmplyeeProfile.objects.get(employee_id=request.session['employee_id']).hotel_id
         hotel_name = HotelProfile.objects.get(pk=hotel_id).name
@@ -154,7 +154,7 @@ def cancel_records(request):
     record.save()
     rooms = RoomDetails.objects.filter(reservation_id=reservation_id)
     for room in rooms:
-        room.room_status = 'V'
+        room.reservation_id = None
         room.save()
     return redirect('employee')
 

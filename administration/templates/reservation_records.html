@@ -44,10 +44,10 @@
                             <th scope="row">{{ confirmed_detail.reservation_id }}</th>
                             <td>{{ confirmed_detail.guest_id }}</td>
                             <td>{{ hotel_name }}</td>
-                            <td>{{ confirmed_detail.check_in_date }}&nbsp;{{ confirmed_detail.check_in_time}}</td>
-                            <td>{{ confirmed_detail.check_out_date }}&nbsp;{{ confirmed_detail.check_out_time}}</td>
-                            <td>{{ confirmed_detail.reservation_date }}</td>
-                            <td>{{ confirmed_detail.room_id }}</td>
+                            <td>{{ confirmed_detail.check_in_date|date:'Y-m-d' }}&nbsp;{{ confirmed_detail.check_in_time}}</td>
+                            <td>{{ confirmed_detail.check_out_date|date:'Y-m-d' }}&nbsp;{{ confirmed_detail.check_out_time}}</td>
+                            <td>{{ confirmed_detail.reservation_date|date:'Y-m-d' }}</td>
+                            <td>{{ confirmed_detail.room_class_id }}</td>
                             <td>{{ confirmed_detail.total_rooms }}</td>
                             <td>{{ confirmed_detail.total_guests }}</td>
                             <td>{{ confirmed_detail.total_cost}}</td>
@@ -88,10 +88,10 @@
                             <th scope="row">{{ cancelled_detail.reservation_id }}</th>
                             <td>{{ cancelled_detail.guest_id }}</td>
                             <td>{{ hotel_name }}</td>
-                            <td>{{ cancelled_detail.check_in_date }}&nbsp;{{ cancelled_detail.check_in_time}}</td>
-                            <td>{{ cancelled_detail.check_out_date }}&nbsp;{{ cancelled_detail.check_out_time}}</td>
-                            <td>{{ cancelled_detail.reservation_date }}</td>
-                            <td>{{ cancelled_detail.room_id }}</td>
+                            <td>{{ cancelled_detail.check_in_date|date:'Y-m-d' }}&nbsp;{{ cancelled_detail.check_in_time}}</td>
+                            <td>{{ cancelled_detail.check_out_date|date:'Y-m-d' }}&nbsp;{{ cancelled_detail.check_out_time}}</td>
+                            <td>{{ cancelled_detail.reservation_date|date:'Y-m-d' }}</td>
+                            <td>{{ cancelled_detail.room_class_id }}</td>
                             <td>{{ cancelled_detail.total_rooms }}</td>
                             <td>{{ cancelled_detail.total_guests }}</td>
                             <td>{{ cancelled_detail.total_cost}}</td>
@@ -132,10 +132,10 @@
                             <th scope="row">{{ cancelled_detail.reservation_id }}</th>
                             <td>{{ cancelled_detail.guest_id }}</td>
                             <td>{{ hotel_name }}</td>
-                            <td>{{ cancelled_detail.check_in_date }}&nbsp;{{ cancelled_detail.check_in_time}}</td>
-                            <td>{{ cancelled_detail.check_out_date }}&nbsp;{{ cancelled_detail.check_out_time}}</td>
-                            <td>{{ cancelled_detail.reservation_date }}</td>
-                            <td>{{ cancelled_detail.room_id }}</td>
+                            <td>{{ cancelled_detail.check_in_date|date:'Y-m-d' }}&nbsp;{{ cancelled_detail.check_in_time}}</td>
+                            <td>{{ cancelled_detail.check_out_date|date:'Y-m-d' }}&nbsp;{{ cancelled_detail.check_out_time}}</td>
+                            <td>{{ cancelled_detail.reservation_date|date:'Y-m-d' }}</td>
+                            <td>{{ cancelled_detail.room_class_id }}</td>
                             <td>{{ cancelled_detail.total_rooms }}</td>
                             <td>{{ cancelled_detail.total_guests }}</td>
                             <td>{{ cancelled_detail.total_cost}}</td>
