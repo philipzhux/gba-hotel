@@ -27,8 +27,8 @@ pip install -r requirements.txt
 python manage.py runserver 127.0.0.1:3170
 ```
 ## Visit the site
-Visit http://127.0.0.1:3170 on your local machine to test our system after you run either directly or via docker as is shown above. 
-You can also choose to visit http://philipnetwork.com:3170 so that you do not need to run on your local machine by yourself.
+* Visit http://127.0.0.1:3170 on your local machine to test our system after you run either directly or via docker as is shown above. 
+* You can also choose to visit http://philipnetwork.com:3170 so that you do not need to run on your local machine by yourself.
 
 ## Test account:
 ### Guest users:
