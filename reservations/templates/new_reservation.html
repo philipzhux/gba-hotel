@@ -88,6 +88,10 @@
                 <input type="text" class="form-control col-sm-2" id="nights" name="nights" readonly size="5">
             </div>
             <div class="form-group row">
+                <label class="control-label col-sm-2">Number of Rooms:</label>
+                <input type="text" id="total_rooms" class="form-control col-sm-2" name="total_rooms">
+            </div>
+            <div class="form-group row">
                 <label class="control-label col-sm-2" id = "total_guests">Number of Guests:</label>
 
                 <select name="total_guests"  class="form-control" style="width:auto;">
@@ -160,7 +164,7 @@
                 $('#room_type').on('change', function () {
                     var total_rooms = $('#total_rooms').val();
                     var nights = $('#nights').val();
-                    var data = {"room_type": $(this).val(), "behavior": "select_room","hotel_id":$('#hotel_id').val()};
+                    var data = {"room_type": $(this).val(), "behavior": "select_room","hotel_id":$('#hotel_id').val(),"cid":$('#cid').val(),"cod":$('#cod').val()};//abcdefg
                     if($(this).val()!="none"){
                         $.ajax({
                         url: {% url 'reservation' %},

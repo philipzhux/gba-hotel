@@ -40,7 +40,7 @@ class ReservationDetails(models.Model):
     guest = models.ForeignKey(GuestDetails, to_field='user_name',on_delete=models.CASCADE)
     hotel = models.ForeignKey(HotelProfile, to_field='hotel_id',on_delete=models.CASCADE)
     # room = models.ForeignKey(RoomClass, to_field='class_id',on_delete=models.CASCADE)
-    room_class =  models.ForeignKey(RoomClass, to_field='class_id',on_delete=models.CASCADE)
+    # room_class =  models.ForeignKey(RoomClass, to_field='class_id',on_delete=models.CASCADE)
     discount = models.ForeignKey(DiscountDetails, to_field='discount_id',on_delete=models.CASCADE, null=True, blank= True)
     total_guests = models.PositiveIntegerField(default=0)
     total_days = models.PositiveIntegerField(default=0)
@@ -50,18 +50,27 @@ class ReservationDetails(models.Model):
     reservation_date = models.DateField()
 
 
+
+
 class RoomDetails(models.Model):
     #ROOM_STATUS = (('V', 'Vacant'),('D', 'Dirty'),('O', 'Occupied'),('B', 'Booked'))
-    reservation = models.ForeignKey(ReservationDetails, to_field='reservation_id', null=True,on_delete=models.CASCADE,blank=True)
+    # reservation = models.ForeignKey(ReservationDetails, to_field='reservation_id', null=True,on_delete=models.CASCADE,blank=True)
     room_key = models.AutoField(primary_key=True)
     room_no = models.PositiveIntegerField(null=True)
     # hotel = models.ForeignKey(HotelProfile, to_field='hotel_id',on_delete=models.CASCADE)
-    guest = models.ForeignKey(GuestDetails, to_field='user_name',on_delete=models.SET_NULL,null=True,blank=True)
+    # guest = models.ForeignKey(GuestDetails, to_field='user_name',on_delete=models.SET_NULL,null=True,blank=True)
     room_class = models.ForeignKey(RoomClass, to_field='class_id',on_delete=models.CASCADE)
     layout = models.CharField(max_length=40)
     floor_no = models.PositiveIntegerField(default=0)
     # room_status = models.CharField(max_length=1)
     # Need to change
+
+class ReservationRoom(models.Model):
+    id = models.AutoField(primary_key=True)
+    reservation = models.ForeignKey(ReservationDetails,to_field='reservation_id',on_delete = models.PROTECT)
+    room_key = models.ForeignKey(RoomDetails,to_field='room_key',on_delete = models.PROTECT)
+
+
 
 class DiscountDistribution(models.Model):
     distribution_id = models.AutoField(primary_key=True)

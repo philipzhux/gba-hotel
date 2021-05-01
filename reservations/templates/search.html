@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
-
+{% load static %}
 {% block style %}
     .card {
-        margin-top: 3%;
-        margin-left: 5%;
-        margin-bottom: 3%;
+        margin-top: 5%;
+        margin-left: 20%;
+        margin-right: 20%;
+        margin-bottom: 5%;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         transition: 0.3s;
         width: 30%;
-        border-radius: 5px;
+        border-radius: 10px;
         float: left;
     }
 
@@ -120,11 +121,11 @@
                         success: function (data) {
                             var i;
                             for(i=0; i<data.hotels_list.length;i++){
-                                $('#card1').append("<div class='card' id='card'><img src='/static/reservations/hotel3.jpg'"
-                                    +" alt='Avatar' style='width:100%'><div class='container1'><h5><b>Hotel Full Name: "
+                                $('#card1').append("<div class='card' id='card'><img src='{% static 'Basecamps-Grand-Hyatt-Hong-Kong.jpg' %}'"
+                                    +" alt='Avatar' style='width:100%'><div class='container1'><h5><b>"
                                     + data.hotels_list[i][1]+"</b></h5> <h6>Rooms start at HKD <b>"
                                     + data.hotels_list[i][2]+"/night</b></h6><a class='btn btn-primary'"
-                                    +" style='padding-left:20px;padding-right:20px' href='{% url 'reservation' %}?hotel_id="
+                                    +" style='padding-left:20px;padding-right:20px;margin-top:10px;margin-bottom:10px' href='{% url 'reservation' %}?hotel_id="
                                     + data.hotels_list[i][0]+"'>Book</a></div></div><br/>");
                             }
 
@@ -137,4 +138,43 @@
             });
         });
 </script>
+<style>
+        .card {
+        margin-top: 3%;
+        margin-left: 5%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 40%;
+        border-radius: 10px;
+        float: left;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    img {
+        border-radius: 5px 5px 0 0;
+    }
+
+    .container1 {
+        padding: 2px 16px;
+        width: 100%;
+
+        text-align: left;
+    }
+    .button3 {
+        background-color: #f44336;
+        color: white;
+
+        font-weight: 400;
+        font-size: 14px;
+        border: 2px solid #f44336;
+    }
+
+    .button3:hover {
+        background-color: #da190b;
+        color: white;
+    }
+</style>
 {% endblock content %}

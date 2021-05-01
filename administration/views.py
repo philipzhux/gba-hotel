@@ -5,7 +5,7 @@ from administration.models import EmplyeeProfile
 from reservations.models import HotelProfile, ReservationDetails, RoomDetails
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ObjectDoesNotExist
-
+import django.contrib.staticfiles
 def admin_login(request):
     if 'employee_id' in request.session:
         if request.session['position'] == 'admin':
