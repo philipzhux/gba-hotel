@@ -39,3 +39,5 @@ Username: 422_Lucina_Arkell Password: 0 <br>
 Username: Gwenora Mattussevich Password: 111111 <br>
 Username: Karl McCreary Password: 111111 <br>
 Username: Avictor Cranage Password: 111111 <br>
+You need to login the management account from the management portal, you can visit it by clicking the image in the upper right corner of the homepage: http://philipnetwork.com:3170/office/![image](https://user-images.githubusercontent.com/62172698/116790986-fd609800-aae9-11eb-9442-d89c20d07b97.png)
+
