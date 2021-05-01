@@ -12,7 +12,7 @@ A course project for Database Systems (CSC3170), 2021 Spring at CUHK-Shenzhen.
 GBA Hotels, short for Greater Bay Area Hotels, is a hotel reservation and management system. You can both login as a guest user or a management user from different portals. It supports hotel reservation for the guest user and management for the management user.
 The application is built by Zhu Chuyan (Philip) based on Django framework and SQLite3 databse engine.
 
-# Where are the embedded SQL queries
+## Where are the embedded SQL queries
 You can refer to https://github.com/philipzhux/gba-hotel/blob/main/reservations/views.py and https://github.com/philipzhux/gba-hotel/blob/main/home/views.py to check how we embed the SQL queries into the web application.
 
 # How to test
