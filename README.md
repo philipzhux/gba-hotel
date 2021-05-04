@@ -2,7 +2,7 @@
 A course project for Database Systems (CSC3170), 2021 Spring at CUHK-Shenzhen.
 
 ## To TAs:
-We have include docker image in the project which makes it large in size, if you have difficulties git clone/download from here, please directly download from: https://cuhko365-my.sharepoint.com/:u:/g/personal/119010486_link_cuhk_edu_cn/EY89p2dtqTxEsGmyyak0GS8BpCk8j10rEFfbU-_6bRlyAQ?e=G1ONJR
+We have included docker image in the project which makes it large in size, if you have difficulties git clone/download from here, please directly download from: https://cuhko365-my.sharepoint.com/:u:/g/personal/119010486_link_cuhk_edu_cn/EY89p2dtqTxEsGmyyak0GS8BpCk8j10rEFfbU-_6bRlyAQ?e=G1ONJR
 ## Group Members:
 * **Zhu Chuyan 119010486@link.cuhk.edu.cn** (Leading)
 * Xiao Wenli 119010346@link.cuhk.edu.cn
